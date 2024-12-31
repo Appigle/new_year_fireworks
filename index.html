@@ -1,0 +1,289 @@
+<!-- Thanks https://taurl.cn/biu -->
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta name="baidu-analysis-id" content="1c1e2w372v2t1j37">
+    <meta charset="utf-8">
+    <meta name="360-analysis-id" content="2w1j1d382x352p2s">
+    <style type="text/css">
+      p {
+        font-weight: 700
+      }
+
+      p {
+        font-weight: 1000
+      }
+
+      p {
+        font-size: 48px
+      }
+
+      p {
+        font-family: "楷体"
+      }
+    </style>
+    <title>烟花🎇</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="icon" href="./assets/favicon.ico" />
+    <link href="./css/main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <figure style="position: absolute;top: -200px;height: 1px;width: 1px;opacity: 0;">
+      <figcaption>Happy New Year！#2025 🎆</figcaption>
+      <audio controls src="./assets/HNW.mp3" id="audioDom"></audio>
+      <!-- <audio controls src="./assets/happy-new-year-short-version-4-279520.mp3" id="audioDom"></audio> -->
+    </figure>
+    <button style="background-color: lightslategray;cursor: pointer;" id="closeMusicBtn">Close Music</button>
+    <button style="background-color: lightblue;cursor: pointer;" id="startMusicBtn">Start Music</button>
+    <button style="background-color: lightcyan;cursor: pointer;position: absolute;top:0px;right:0px"
+      id="openConfigBtn">Config</button>
+    <div id="yhBtn"
+      style="position:fixed;top:50%;left:50%;transform: translateX(-50%);cursor:pointer;width:20%;height:20%;z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff ; font-size:17px    ">
+      <p>点燃</p>
+      <img style="width:64px;margin-bottom:36px " src="./assets/baooo.png">
+    </div>
+    <div style="height: 0; width: 0; position: absolute; visibility: hidden;">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"></path>
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+          </path>
+        </symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24">
+          <path
+            d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z">
+          </path>
+        </symbol>
+        <symbol id="icon-sound-on" viewBox="0 0 24 24">
+          <path
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+          </path>
+        </symbol>
+        <symbol id="icon-sound-off" viewBox="0 0 24 24">
+          <path
+            d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z">
+          </path>
+        </symbol>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="loading-init">
+        <div class="loading-init__header"></div>
+        <div class="loading-init__status"></div>
+      </div>
+      <div class="stage-container remove">
+        <div class="page_two hide">
+          <div id="text" style="display:none;">
+            <p>
+              倒计时还有💓<br>
+              <br>
+              <span id="time"></span>
+              <br>
+              <br>
+              <br>
+              新年快乐 平安喜乐✨<br>
+              唯愿烟花像星辰 祝你所愿皆成真✨<br>
+              <br>
+              <br>
+              连击屏幕，有烟花哦🧨<br>
+              分享一下，接力快乐❤️<br>
+              <br>
+              <span id="copyright"></span>
+            </p>
+          </div>
+          <div class="type_words" id="contents" style="font-size:1.15rem;line-height:1.5rem;"></div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="trails-canvas"></canvas>
+          <canvas id="main-canvas"></canvas>
+        </div>
+        <div class="menu hide">
+          <div class="menu__inner-wrap">
+            <div class="menu__header">设置</div>
+            <form>
+              <div class="form-option form-option--select">
+                <label class="shell-type-label">烟花类型</label>
+                <select class="shell-type"></select>
+              </div>
+              <div class="form-option form-option--select">
+                <label class="shell-size-label">烟花大小</label>
+                <select class="shell-size"></select>
+              </div>
+              <div class="form-option form-option--select">
+                <label class="quality-ui-label">画质</label>
+                <select class="quality-ui"></select>
+              </div>
+              <div class="form-option form-option--select">
+                <label class="sky-lighting-label">天空照明</label>
+                <select class="sky-lighting"></select>
+              </div>
+              <div class="form-option form-option--select">
+                <label class="scaleFactor-label">规模</label>
+                <select class="scaleFactor"></select>
+              </div>
+              <div class="form-option form-option--checkbox">
+                <label class="auto-launch-label">自动发射</label>
+                <input class="auto-launch" type="checkbox">
+              </div>
+              <div class="form-option form-option--checkbox form-option--finale-mode">
+                <label class="finale-mode-label">结局模式</label>
+                <input class="finale-mode" type="checkbox">
+              </div>
+              <div class="form-option form-option--checkbox hide">
+                <label class="hide-controls-label">隐藏控制器</label>
+                <input class="hide-controls" type="checkbox">
+              </div>
+              <div class="form-option form-option--checkbox form-option--fullscreen">
+                <label class="fullscreen-label">全屏</label>
+                <input class="fullscreen" type="checkbox">
+              </div>
+              <div class="form-option form-option--checkbox">
+                <label class="long-exposure-label">打开快门</label>
+                <input class="long-exposure" type="checkbox">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="help-modal">
+        <div class="help-modal__overlay"></div>
+        <div class="help-modal__dialog">
+          <div class="help-modal__header"></div>
+          <div class="help-modal__body"></div>
+          <button type="button" class="help-modal__close-btn">关闭</button>
+        </div>
+      </div>
+    </div>
+    <!-- partial -->
+    <script src="./js/fscreen.js"></script>
+    <script src="./js/stage.js"></script>
+    <script src="./js/math.js"></script>
+    <script src="./js/firework.js"></script>
+    <script>
+      function musicPlay(play) {
+        var audioElement = document.querySelector('#audioDom');
+        if (play && audioElement['paused']) {
+          audioElement.play();
+        }
+        if (!play && !audioElement['paused']) {
+          audioElement.pause();
+        }
+      }
+      function musicInBrowserHandler() {
+        setTimeout(function() {
+          musicPlay(!![]);
+        }, 0x0);
+      }
+      document.body.addEventListener('touchstart', musicInBrowserHandler)
+      $('#yhBtn').click(() => {
+        $('#yhBtn').hide();
+        setTimeout(() => {
+          start();
+          fireworks();
+        }
+          , 0x640);
+        setTimeout(() => {
+          function playSecondaryAudio() {
+            var audioElement = document.getElementById('audioDom');
+            audioElement.play();
+          }
+          playSecondaryAudio();
+        }
+          , 0x320);
+        console.log(updateConfig({
+          'autoLaunch': !!1
+        }));
+      }
+      );
+      function fireworks() {
+        $('.page_one').addClass('hide');
+        $('.page_two').removeClass('hide');
+      }
+      function start() {
+        let textContent = $('#text').html();
+        let displayedText = '';
+        let index = 0;
+        let textElement = document.getElementById('contents');
+        let textInterval = setInterval(() => {
+          if (displayedText.length < textContent.length) {
+            displayedText += textContent[index++];
+            textElement.innerHTML = '<p>' + displayedText + '<span class="xx" style="opacity: 1;color: white;">∎</span></p>';
+          } else {
+            clearInterval(textInterval);
+            textElement.innerHTML = '<p>' + displayedText + '</p>';
+          }
+        }, 100);
+      }
+      function time() {
+        var second = 1000;
+        var minute = second * 60;
+        var hour = minute * 60;
+        var day = hour * 24;
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var targetDate = Date.UTC(2024, 0, 1, 0, 0, 0);
+        var currentTimeUTC = Date.UTC(year, month - 1, date, hours, minutes, seconds);
+        var timeDifference = targetDate - currentTimeUTC;
+        if (timeDifference <= 0) {
+          document.getElementById('time').innerHTML = '已经是新的一年了，祝您：新年快乐,万事如意！👏🎆🎉';
+          return;
+        }
+        var days = Math.floor(timeDifference / day);
+        var hoursLeft = Math.floor(timeDifference % day / hour);
+        var minutesLeft = Math.floor(timeDifference % hour / minute);
+        var secondsLeft = Math.floor(timeDifference % minute / second);
+        var timeString = '';
+        if (days > 0) {
+          timeString += days + '天';
+        }
+        if (hoursLeft > 0) {
+          timeString += hoursLeft + '小时';
+        }
+        if (minutesLeft > 0) {
+          timeString += minutesLeft + '分钟';
+        }
+        timeString += secondsLeft + '秒就要跨年了';
+        console.log('%c [ timeString ]-339', 'font-size:13px; background:pink; color:#bf2c9f;', timeString)
+        document.getElementById('time').innerHTML = timeString;
+        window.setTimeout(time, 1000);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        time();
+        $('#closeMusicBtn').click(function() {
+          musicPlay(false);
+        }
+        );
+        $('#startMusicBtn').click(function() {
+          musicPlay(true);
+        }
+        );
+        $('#openConfigBtn').click(function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          $('.menu').toggleClass(' hide');
+        }
+        );
+      });
+    </script>
+  </body>
+
+</html>
