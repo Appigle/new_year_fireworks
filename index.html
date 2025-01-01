@@ -87,12 +87,12 @@
       </div>
       <div class="stage-container remove">
         <div class="page_two hide">
+          <div class="type_words" id="contents" style="font-size:1.15rem;line-height:1.5rem;"></div>
           <div id="text" style="display:none;">
             <p>
-              倒计时还有💓<br>
+              <span id="idTargetYear"></span>倒计时还有💓<br>
               <br>
-              <span id="time"></span>
-              <br>
+              <span id="idCoundownTime"></span>
               <br>
               <br>
               新年快乐 平安喜乐✨<br>
@@ -105,7 +105,7 @@
               <span id="copyright"></span>
             </p>
           </div>
-          <div class="type_words" id="contents" style="font-size:1.15rem;line-height:1.5rem;"></div>
+
         </div>
         <div class="canvas-container">
           <canvas id="trails-canvas"></canvas>
@@ -174,6 +174,8 @@
     <script src="./js/math.js"></script>
     <script src="./js/firework.js"></script>
     <script>
+      let urlYear = new URLSearchParams(window.location.search).get('year');
+      urlYear = +urlYear > 0 ? urlYear : new Date().getFullYear() + 1;
       function musicPlay(play) {
         var audioElement = document.querySelector('#audioDom');
         if (play && audioElement['paused']) {
@@ -190,12 +192,14 @@
       }
       document.body.addEventListener('touchstart', musicInBrowserHandler)
       $('#yhBtn').click(() => {
+        $('#idTargetYear').html(urlYear + '年,');
+        updateCoundownTime(false);
         $('#yhBtn').hide();
         setTimeout(() => {
-          start();
-          fireworks();
+          updateContentsText();
+          $('.page_two').removeClass('hide');
         }
-          , 0x640);
+          , 1500);
         setTimeout(() => {
           function playSecondaryAudio() {
             var audioElement = document.getElementById('audioDom');
@@ -203,17 +207,13 @@
           }
           playSecondaryAudio();
         }
-          , 0x320);
+          , 800);
         console.log(updateConfig({
           'autoLaunch': !!1
         }));
       }
       );
-      function fireworks() {
-        $('.page_one').addClass('hide');
-        $('.page_two').removeClass('hide');
-      }
-      function start() {
+      function updateContentsText() {
         let textContent = $('#text').html();
         let displayedText = '';
         let index = 0;
@@ -225,10 +225,11 @@
           } else {
             clearInterval(textInterval);
             textElement.innerHTML = '<p>' + displayedText + '</p>';
+            updateCoundownTime(true);
           }
-        }, 100);
+        }, 10);
       }
-      function time() {
+      function updateCoundownTime(loop) {
         var second = 1000;
         var minute = second * 60;
         var hour = minute * 60;
@@ -240,11 +241,11 @@
         var hours = now.getHours();
         var minutes = now.getMinutes();
         var seconds = now.getSeconds();
-        var targetDate = Date.UTC(2024, 0, 1, 0, 0, 0);
-        var currentTimeUTC = Date.UTC(year, month - 1, date, hours, minutes, seconds);
+        var targetDate = new Date(urlYear, 0, 1, 0, 0, 0).getTime();
+        var currentTimeUTC = now.getTime();
         var timeDifference = targetDate - currentTimeUTC;
         if (timeDifference <= 0) {
-          document.getElementById('time').innerHTML = '已经是新的一年了，祝您：新年快乐,万事如意！👏🎆🎉';
+          document.getElementById('idCoundownTime').innerHTML = '已经是新的一年了，祝您：新年快乐,万事如意！👏🎆🎉';
           return;
         }
         var days = Math.floor(timeDifference / day);
@@ -262,12 +263,11 @@
           timeString += minutesLeft + '分钟';
         }
         timeString += secondsLeft + '秒就要跨年了';
-        console.log('%c [ timeString ]-339', 'font-size:13px; background:pink; color:#bf2c9f;', timeString)
-        document.getElementById('time').innerHTML = timeString;
-        window.setTimeout(time, 1000);
+        document.getElementById('idCoundownTime').innerHTML = timeString;
+        !!loop && window.setInterval(updateCoundownTime, 1000);
       }
       document.addEventListener('DOMContentLoaded', function() {
-        time();
+
         $('#closeMusicBtn').click(function() {
           musicPlay(false);
         }
